@@ -25,7 +25,6 @@ public class DisappearingBlocks : MonoBehaviour {
         if (!triggered && collision.gameObject.tag == "Player")
         {
             triggered = true;
-            Appear(blockRndrs[0], colls[0]);
             StartCoroutine(MagicSequence(blockRndrs, colls));
         }
     }
@@ -78,17 +77,22 @@ public class DisappearingBlocks : MonoBehaviour {
         yield return null;
         */
         float time = 0.9f;
-        for (j = 0; j < blocksRndrs.Length; j++)
-        {
-            
-            if (j > 4) time = 0.35f;
-            if (j == 0) yield return new WaitForSeconds(2.0f);
-            Appear(blocksRndrs[j + 1], colls[j + 1]);
-            yield return new WaitForSeconds(time);
-            Fade(blocksRndrs[j]); //test
-            yield return new WaitForSeconds(0.05f);
-            Disappear(blocksRndrs[j], colls[j]);
-            yield return new WaitForSeconds(time);
+        while (true) {
+            for (j = 0; j + 1 < blocksRndrs.Length; j++) {
+
+                if (j > 4) time = 0.35f;
+                if (j == 0) {
+                    Appear(blockRndrs[0], colls[0]);
+                    yield return new WaitForSeconds(2.0f);
+                }
+                Appear(blocksRndrs[j + 1], colls[j + 1]);
+                yield return new WaitForSeconds(time);
+                yield return new WaitForSeconds(0.05f);
+                Disappear(blocksRndrs[j], colls[j]);
+                yield return new WaitForSeconds(time);
+            }
+            Disappear(blockRndrs[blockRndrs.Length - 1], colls[blockRndrs.Length - 1]);
+            time = 0.9f;
         }
 
     }

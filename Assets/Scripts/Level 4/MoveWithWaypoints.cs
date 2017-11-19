@@ -35,7 +35,9 @@ public class MoveWithWaypoints : MonoBehaviour {
             speed = 5f;
         }
         startMarker = waypoints[currentStartPoint];
-        endMarker = waypoints[currentStartPoint + 1];
+        if (currentStartPoint + 1 < waypoints.Length) {
+            endMarker = waypoints[currentStartPoint + 1];
+        }
         startTime = Time.time;
         journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
     }
