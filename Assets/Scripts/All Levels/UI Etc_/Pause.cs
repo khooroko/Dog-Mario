@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 
 public class Pause : MonoBehaviour {
 
@@ -87,17 +88,25 @@ public class Pause : MonoBehaviour {
                     if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                         index = 1;
                     if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) {
-                        #if UNITY_EDITOR
-                        // Application.Quit() does not work in the editor so
-                        // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
-                        UnityEditor.EditorApplication.isPlaying = false;
-                        #else
-                          Application.Quit();
-                        #endif
+                        Quit();
                     }
                 }
             }
             yield return null;
         }
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void Quit() {
+#if UNITY_EDITOR
+        // Application.Quit() does not work in the editor so
+        // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+                          Application.Quit();
+#endif
     }
 }
