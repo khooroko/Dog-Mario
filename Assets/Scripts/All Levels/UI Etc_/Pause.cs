@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
 public class Pause : MonoBehaviour {
@@ -37,23 +38,21 @@ public class Pause : MonoBehaviour {
                     Time.timeScale = 0f;
                 }
                 else if (paused) {
-                    anim.SetBool("Paused", false);
-                    paused = false;
-                    yield return new WaitForSecondsRealtime(0.75f);
-                    float value;
-                    master.GetFloat("MusicVol", out value);
-                    master.SetFloat("MusicVol", value + 3.0f);
-                    index = 0;
-                    Time.timeScale = originalTimeScale;
+                    StartCoroutine(Unpause());
                 }
             }
             if (paused) {
+                if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
+                    index++;
+                    index %= 4;
+                }
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
+                    index--;
+                    if (index == -1)
+                        index = 3;
+                }
+                anim.SetInteger("Index", index);
                 if (index == 0) {
-                    anim.SetInteger("Index", 0);
-                    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-                        index = 1;
-                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                        index = 2;
                     if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && StaticVolume.staticMusicVol > 1) {
                         StaticVolume.staticMusicVol--;
                         master.SetFloat("MusicVol", (StaticVolume.staticMusicVol - 5) * 2);
@@ -64,11 +63,6 @@ public class Pause : MonoBehaviour {
                     }
                 }
                 else if (index == 1) {
-                    anim.SetInteger("Index", 1);
-                    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-                        index = 2;
-                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                        index = 0;
                     if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && StaticVolume.staticSFXVol > 1) {
                         StaticVolume.staticSFXVol--;
                         if(StaticVolume.staticSFXVol == 0)
@@ -82,11 +76,17 @@ public class Pause : MonoBehaviour {
                     }
                 }
                 else if(index == 2) {
-                    anim.SetInteger("Index", 2);
-                    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-                        index = 0;
-                    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                        index = 1;
+                    if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+                        index = 3;
+                    }
+                    if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) {
+                        StageSelect();
+                    }
+                }
+                else if (index == 3) {
+                    if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+                        index = 2;
+                    }
                     if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space)) {
                         Quit();
                     }
@@ -98,6 +98,23 @@ public class Pause : MonoBehaviour {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public IEnumerator Unpause() {
+        anim.SetBool("Paused", false);
+        paused = false;
+        yield return new WaitForSecondsRealtime(0.75f);
+        float value;
+        master.GetFloat("MusicVol", out value);
+        master.SetFloat("MusicVol", value + 3.0f);
+        index = 0;
+        Time.timeScale = originalTimeScale;
+    }
+
+    public void StageSelect() {
+        Time.timeScale = originalTimeScale;
+        StaticCheckpoint.checkpoint = 1;
+        SceneManager.LoadScene("Start Menu");
     }
 
     public void Quit() {

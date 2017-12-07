@@ -17,6 +17,11 @@ public class StartMenuMain : MonoBehaviour {
 	void Start () {
         state = 0;
         anim = GetComponent<Animator>();
+        if (StaticCheckpoint.checkpoint == 1) {
+            anim.SetBool("SS", true);
+            state = 2;
+            StaticCheckpoint.checkpoint = 0;
+        }
         for(int i = 1; i < clearedPics.Length; i++) {
             if (!PlayerPrefs.HasKey("Cleared " + i) || PlayerPrefs.GetInt("Cleared " + i) != 1) {
                 clearedPics[i].SetActive(false);
