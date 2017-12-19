@@ -2,13 +2,13 @@
 
 A game that is intentionally difficult, inspired by Syobon Action (a.k.a. Cat Mario). Features 4 stages that span multiple genres.
 
-<img src="https://github.com/khooroko/Dog-Mario/tree/master/Assets/Sprites/Start%20Menu/1.PNG" height="250" alt="Stage 1">
+<img src="https://github.com/khooroko/Dog-Mario/blob/master/Assets/Sprites/Start%20Menu/1.PNG" height="250" alt="Stage 1">
 
-<img src="https://github.com/khooroko/Dog-Mario/tree/master/Assets/Sprites/Start%20Menu/2.PNG" height="250" alt="Stage 2">
+<img src="https://github.com/khooroko/Dog-Mario/blob/master/Assets/Sprites/Start%20Menu/2.PNG" height="250" alt="Stage 2">
 
-<img src="https://github.com/khooroko/Dog-Mario/tree/master/Assets/Sprites/Start%20Menu/3.PNG" height="250" alt="Stage 3">
+<img src="https://github.com/khooroko/Dog-Mario/blob/master/Assets/Sprites/Start%20Menu/3.PNG" height="250" alt="Stage 3">
 
-<img src="https://github.com/khooroko/Dog-Mario/tree/master/Assets/Sprites/Start%20Menu/4.png" height="250" alt="Stage 4">
+<img src="https://github.com/khooroko/Dog-Mario/blob/master/Assets/Sprites/Start%20Menu/4.png" height="250" alt="Stage 4">
 
 ## Getting the game
 You can play the game on [itch.io](https://khooroko.itch.io/dog-mario) or get it from the newest [releases](https://github.com/khooroko/Dog-Mario/releases).
