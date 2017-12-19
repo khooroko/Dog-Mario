@@ -19,6 +19,11 @@ public class Pause : MonoBehaviour {
     private int index = 0;
 
     void Start() {
+        if (SceneManager.GetActiveScene().name.Equals("Level 1") || SceneManager.GetActiveScene().name.Equals("Level 4")) {
+            Time.fixedDeltaTime = 0.00002f;
+        } else {
+            Time.fixedDeltaTime = 0.001f;
+        }
         anim = GetComponent<Animator>();
         //thisTime = Time.time;
         originalTimeScale = Time.timeScale;
