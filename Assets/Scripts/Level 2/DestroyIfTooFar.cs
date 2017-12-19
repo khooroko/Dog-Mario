@@ -14,7 +14,7 @@ public class DestroyIfTooFar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         position = transform.position;
-        if (position.x < -17f || position.x > 17f || position.y < -9f || position.y > 9f) {
+        if (position.x < -20f || position.x > 20f || position.y < -12f || position.y > 12f) {
             Destroy(gameObject);
         }
 	}

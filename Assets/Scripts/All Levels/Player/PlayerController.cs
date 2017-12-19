@@ -12,10 +12,7 @@ public class PlayerController : PhysicsObject {
 	// SCRIPT: TextBoxManager
 	// control player movement during dialogue
 	public bool canMove;
-
-    /*private SpriteRenderer spriteRenderer;
-    private GameObject feet;
-    private GameObject head;*/
+    
     private MusicManager musicManager;
     private bool dead;
     private Animator animator;
@@ -26,9 +23,6 @@ public class PlayerController : PhysicsObject {
 
     // Use this for initialization
     void Awake() {
-        /*spriteRenderer = GetComponent<SpriteRenderer>();
-        feet = GameObject.Find("Feet Collider");
-        head = GameObject.Find("Head Collider");*/
         if (GameObject.FindGameObjectWithTag("MusicManager") != null) {
             musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
         }
@@ -102,8 +96,6 @@ public class PlayerController : PhysicsObject {
 
     public void Die() {
         if (!dead) {
-            Debug.Log("" + currentSceneName + " " + currentScene.name + " " + !currentSceneName.Equals("Level 4"));
-            Debug.Log("Player dead!"); //print Dead! in console -> for testing purposes
             dead = true;
             rb2d.velocity.Set(0f, 0f);
             StartCoroutine(PlayDeath());

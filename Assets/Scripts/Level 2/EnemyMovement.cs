@@ -17,6 +17,9 @@ public class EnemyMovement : MonoBehaviour {
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Start() {
         startPos = new Vector2(transform.position.x, transform.position.y);
     }
 
