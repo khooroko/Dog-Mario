@@ -25,7 +25,7 @@ Pressing `\` erases all saved progress.
 Pressing `esc` while playing any stage brings up the pause menu. 
 
 ## Contributors
-Level design for stages 1 and 4: [Tan Bing Hwang](https://github.com/tbhbhbh)
+Level design for stage 4 and part of stage 1: [Tan Bing Hwang](https://github.com/tbhbhbh)
 
 Nicer looking sprites: [Tan Bing Hwang](https://github.com/tbhbhbh)
 
