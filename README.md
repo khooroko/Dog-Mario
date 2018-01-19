@@ -20,7 +20,7 @@ Pressing `1`, `2`, `3` or `4` brings you to the respective stages.
 
 Progress is saved each time a stage is cleared. 
 
-Pressing `\\` erases all saved progress. 
+Pressing `\` erases all saved progress. 
 
 Pressing `esc` while playing any stage brings up the pause menu. 
 
